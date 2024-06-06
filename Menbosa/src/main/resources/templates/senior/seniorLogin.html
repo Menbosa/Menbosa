@@ -10,13 +10,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
   <!-- footer CSS -->
   <link rel="stylesheet" th:href="@{/css/footer.css}">
+  <!-- seniorLogin JS -->
+  <script defer th:src="@{/js/seniorLogin.js}"></script>
 </head>
 <body>
   <main>
     <img th:src="@{/img/seniorBackgroundImg.png}" alt="" class="seniorBackgroundImg">
     <div class="seniorLogin-container">
       <form method="post">
-        <div class="seniorLogin-logo"><img th:src="@{/img/senior-alheum_logo.svg}" alt=""></div>
+        <a th:href="@{/alheum}">
+          <div class="seniorLogin-logo"><img th:src="@{/img/senior-alheum_logo.svg}" alt=""></div>
+        </a>
         <p class="seniorLogin-title">로그인</p>
         <div class="seniorLogin-loginBox">
           <p>전화번호</p>
@@ -26,7 +30,6 @@
           <button type="submit" class="seniorLogin-loginBox-loginButton">로그인</button>
 
           <div class="seniorLogin-loginBox-menu">
-            <a class="seniorPassword-find" th:href="@{/alheum/senUser/findPassword}">비밀번호 찾기</a>
             <a class="seniorJoin" th:href="@{/alheum/senUser/join}">회원가입</a>
           </div>
         </div>

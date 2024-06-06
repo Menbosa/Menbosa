@@ -1,15 +1,10 @@
-import * as commuModule from "./module/recomComment.js";
-import {getCommentList2, registerComment} from "./module/recomComment.js";
+import * as postModule from "./module/recomComment.js";
 let page = 1;
 let hasNext = true;
 
 
 const titleTabMenu = document.querySelector(".menuButton");
 const titleSubTabMenu = document.querySelector(".menuButton-modifyDelete");
-const commentMenu = document.querySelectorAll(".comments-menuButton");
-const commentSubMenu = document.querySelectorAll(".comments-list-submenu");
-const replyButton = document.querySelectorAll(".reply");
-const replyInputBox = document.querySelectorAll(".reply-inputBox");
 
 
 titleTabMenu.addEventListener("click", function() {
@@ -69,10 +64,10 @@ let boardRecomNum = document.querySelector('#boardRecomNum').value;
     console.log("content:" + commentInfo.content );
     console.log(commentInfo.boardRecomNum);
 
-    commuModule.registerComment(commentInfo, ()=> {
+    postModule.registerComment(commentInfo, ()=> {
       document.querySelector('#recomComment-content').value = '';
       page = 1;
-      commuModule.getCommentList2(boardRecomNum, page, function (data) {
+      postModule.getCommentList2(boardRecomNum, page, function (data) {
         hasNext = data.hasNext;
         console.log("hasNext:"+ hasNext);
         console.log(data.contentList);
@@ -86,7 +81,7 @@ let boardRecomNum = document.querySelector('#boardRecomNum').value;
 
 
 
-  commuModule.getCommentList2(boardRecomNum, page, function (data) {
+  postModule.getCommentList2(boardRecomNum, page, function (data) {
     // data.contentList = undefined;
     hasNext = data.hasNext;
     console.log("hasNext222:"+ hasNext);
@@ -107,7 +102,7 @@ let boardRecomNum = document.querySelector('#boardRecomNum').value;
 
       page++; //페이지 번호 증가
 
-      commuModule.getCommentList2(boardRecomNum, page, function (data){ //다음 페이지의 댓글 목록을 가져옴
+      postModule.getCommentList2(boardRecomNum, page, function (data){ //다음 페이지의 댓글 목록을 가져옴
         hasNext = data.hasNext;
         console.log("hasNext33:"+ hasNext);
 
@@ -140,7 +135,7 @@ function displayComment(commentList){
                   </div>
                   <p class="comments-list-contents">
                     <span>${e.commentRecomContents}</span>
-                    <span>${commuModule.timeForToday(e.commentRecomDate)}</span>
+                    <span>${postModule.timeForToday(e.commentRecomDate)}</span>
                   </p>
                 </div>
               </div>
@@ -172,7 +167,7 @@ function appendComment(commentList) {
                   </div>
                   <p class="comments-list-contents">
                     <span>${e.commentRecomContents}</span>
-                    <span>${commuModule.timeForToday(e.commentRecomDate)}</span>
+                    <span>${postModule.timeForToday(e.commentRecomDate)}</span>
                   </p>
                 </div>
               </div>
@@ -195,10 +190,10 @@ $commentWrap.addEventListener('click', function (e) {
 
 
     if(confirm("삭제하시겠습니까?")){
-      commuModule.remove(commentRecomNum, () => {
+      postModule.remove(commentRecomNum, () => {
         // 댓글 삭제 함수 호출
         page = 1; // 페이지를 초기화
-        commuModule.getCommentList2(boardRecomNum, page, function (data) {
+        postModule.getCommentList2(boardRecomNum, page, function (data) {
           // 댓글 목록을 다시 가져옴
           hasNext = data.hasNext;
           // 다음 페이지 여부를 갱신

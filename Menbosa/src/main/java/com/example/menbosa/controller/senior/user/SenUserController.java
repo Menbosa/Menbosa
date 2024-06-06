@@ -15,6 +15,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.time.LocalDate;
@@ -35,17 +36,17 @@ public class SenUserController {
     }
 
     @PostMapping("/login")
-    public String login(String senMemPhone, String senMemPassword, HttpSession session){
-//        session.invalidate();
+    public String login(String senMemPhone, String senMemPassword, HttpSession session, RedirectAttributes redirectAttributes){
         try {
             SenUserSessionDTO sessionDTO = senUserService.loginSenUser(senMemPhone, senMemPassword);
             session.setAttribute("senMemNum", sessionDTO.getSenMemNum());
             session.setAttribute("senMemName", sessionDTO.getSenMemName());
             session.setAttribute("testListNum", 0L);
+            return "redirect:/alheum/senUser/main";
         } catch (IllegalStateException e) {
+            redirectAttributes.addAttribute("loginFailed", true);
             return "redirect:/alheum/senUser/login";
         }
-        return "redirect:/alheum/senUser/main";
     }
 
     @GetMapping("/join")

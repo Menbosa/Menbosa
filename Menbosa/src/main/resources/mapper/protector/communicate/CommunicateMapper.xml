@@ -35,7 +35,8 @@
             C.BOARD_COMMU_CONTENTS,
             C.BOARD_COMMU_DATE,
             M.PRO_MEM_NAME,
-            F.FILE_USER
+            F.FILE_USER,
+            M.PRO_MEM_NUM
         FROM MBS_BOARD_COMMU C
                  LEFT JOIN MBS_PRO_MEMBER M
                            ON C.PRO_MEM_NUM = M.PRO_MEM_NUM

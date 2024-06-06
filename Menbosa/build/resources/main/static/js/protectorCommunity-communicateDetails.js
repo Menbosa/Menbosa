@@ -7,49 +7,40 @@ let hasNext = true;
 const $titleTabMenu = document.querySelector(".menuButton");
 const $titleSubTabMenu = document.querySelector(".menuButton-modifyDelete");
 
-    $titleTabMenu?.addEventListener("click", function() {
-        $titleSubTabMenu.classList.toggle("active");
-        console.log("클릭!");
-
+$titleTabMenu?.addEventListener("click", function() {
+    $titleSubTabMenu.classList.toggle("active");
+    console.log("클릭!");
 })
 
-    $titleSubTabMenu?.addEventListener("mouseleave", function() {
-        $titleSubTabMenu.classList.remove("active");
+$titleSubTabMenu?.addEventListener("mouseleave", function() {
+    $titleSubTabMenu.classList.remove("active");
 })
-
-
-
-
-// replyButton.addEventListener("click", function() {
-//   replyInputBox.classList.toggle("reply-active");
-// })
-
 
 
 
 const commentDelete = document.querySelectorAll(".comments-list-submenu > li:nth-of-type(2)");
 commentDelete.forEach((e,i) => {
-  e.addEventListener("click", ()=>{
-    confirm("삭제하시겠습니까?")
-  })
+    e.addEventListener("click", ()=>{
+        confirm("삭제하시겠습니까?")
+    })
 })
 
 
 let $modifyBtn = document.querySelector('.modifyButtn');
 
 $modifyBtn?.addEventListener("click", function () {
-  let boardCommuNum = this.dataset.id;
-  console.log(boardCommuNum)
-  location.href = `/alheum/community/commuModify?boardCommuNum=${boardCommuNum}`;
+    let boardCommuNum = this.dataset.id;
+    console.log(boardCommuNum)
+    location.href = `/alheum/community/commuModify?boardCommuNum=${boardCommuNum}`;
 });
 
 let $removeBtn = document.querySelector('.deleteButtn');
 
 $removeBtn?.addEventListener("click", function (){
-  let boardCommuNum = this.dataset.id;
-  if(confirm("삭제하시겠습니까?")){
-    location.href = `/alheum/community/commuRemove?boardCommuNum=${boardCommuNum}`;
-  }
+    let boardCommuNum = this.dataset.id;
+    if(confirm("삭제하시겠습니까?")){
+        location.href = `/alheum/community/commuRemove?boardCommuNum=${boardCommuNum}`;
+    }
 })
 
 
@@ -61,25 +52,25 @@ imgAjax();
 
 
 function imgAjax(){
-  fetch(`/v1/commu/${boardCommuNum}/files`, {method: 'GET'})
-      //서버에 GET요청을 보내 파일 목록을 가져옴
-      .then(res => res.json())//응답을 JSON으로 변환
-      .then(list => { //변환된 데이터를 list 변수에 저장
-        console.log(list)
+    fetch(`/v1/commu/${boardCommuNum}/files`, {method: 'GET'})
+        //서버에 GET요청을 보내 파일 목록을 가져옴
+        .then(res => res.json())//응답을 JSON으로 변환
+        .then(list => { //변환된 데이터를 list 변수에 저장
+            console.log(list)
 
-        let tags = ''; //HTML 태그를 저장할 변수 초기화
+            let tags = ''; //HTML 태그를 저장할 변수 초기화
 
-        for (let i = 0; i < list.length; i++) {
-          let fileName = list[i].fileExt + '/' + list[i].fileServer + '_' + list[i].fileUser;
-          //파일 경로 조합
+            for (let i = 0; i < list.length; i++) {
+                let fileName = list[i].fileExt + '/' + list[i].fileServer + '_' + list[i].fileUser;
+                //파일 경로 조합
 
-          tags += `<img src="/v1/files?fileName=${fileName}" data-id="${list[i].fileNum}" data-name="${fileName}"/>`;
-        }
+                tags += `<img src="/v1/files?fileName=${fileName}" data-id="${list[i].fileNum}" data-name="${fileName}"/>`;
+            }
 
-        let $postImgs = document.querySelector('.post-images'); //이미지가 삽입될 요소
+            let $postImgs = document.querySelector('.post-images'); //이미지가 삽입될 요소
 
-        $postImgs.innerHTML = tags; //생성된 html 태그를 삽입
-      });
+            $postImgs.innerHTML = tags; //생성된 html 태그를 삽입
+        });
 
 }
 
@@ -165,7 +156,7 @@ function displayComment(commentList){
 
     console.log(commentList);
     commentList.forEach(e => { //댓글 목록을 순회하며 각 댓글을 html로 생성
-       tags += `
+        tags += `
               <li>
               <div class="comments-list-own" data-id = "${e.commentCommuNum} ">
                 <p><img src="/img/community-profile.png" alt=""></p>
@@ -242,8 +233,6 @@ $commentWrap.addEventListener('click', function (e) {
                 });
             });
         }
-
-
     }
 });
 

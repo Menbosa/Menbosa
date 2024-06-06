@@ -75,6 +75,7 @@
   border-radius: 5px;
   margin: 5px 0;
   outline-color: rgb(226, 226, 226);
+  padding: 10px;
 }
 
 .protectorJoin-phone {
@@ -95,6 +96,7 @@
   margin: 0 5px;
   border-radius: 5px;
   outline-color: rgb(226, 226, 226);
+  padding-left: 10px;
 }
 
 .protectorJoin-phone button {
@@ -109,9 +111,10 @@
 .protectorJoin-inputNumber {
   width: 400px;
   height: 50px;
-  margin: 10px 5px;
+  margin: 10px 0;
   border-radius: 5px;
   outline-color: rgb(226, 226, 226);
+  padding: 10px;
 }
 
 .protectorJoin-password {
@@ -120,6 +123,7 @@
   margin: 10px 0;
   border-radius: 5px;
   outline-color: rgb(226, 226, 226);
+  padding: 10px;
 }
 
 .protectorJoin-passwordVerify {
@@ -127,6 +131,8 @@
   height: 50px;
   border-radius: 5px;
   outline-color: rgb(226, 226, 226);
+  padding: 10px;
+
 }
 
 .protectorJoin-email {
@@ -135,6 +141,8 @@
   margin: 10px 0;
   border-radius: 5px;
   outline-color: rgb(226, 226, 226);
+  padding: 10px;
+
 }
 
 .protectorJoin-checkbox p {

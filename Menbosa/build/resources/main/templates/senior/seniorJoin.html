@@ -16,7 +16,11 @@
   <main>
     <img th:src="@{/img/seniorBackgroundImg.png}" alt="" class="seniorBackgroundImg">
     <div class="seniorJoin-container">
-      <div class="seniorJoin-logo"><img th:src="@{/img/senior-alheum_logo.svg}" alt=""></div>
+      <div class="seniorJoin-logo">
+        <a th:href="@{/alheum}">
+          <img th:src="@{/img/senior-alheum_logo.svg}" alt="">
+        </a>
+      </div>
       <p>회원가입</p>
       <form method="post">
 <!--        th:action="@{/senior/seniorJoin}"-->

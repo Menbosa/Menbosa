@@ -314,7 +314,7 @@ main{
   background-color: var(--font-color-white);
 }
 
-.protectorCommunity-postscriptDetails-commentsInput > form{
+.protectorCommunity-postscriptDetails-commentsInput{
   width: 100%;
   display: flex;
   border: 1px solid var(--color-disabled);
@@ -323,13 +323,13 @@ main{
   justify-content: space-evenly;
 }
 
-.protectorCommunity-postscriptDetails-commentsInput > form > input{
+.protectorCommunity-postscriptDetails-commentsInput > input{
   width: 80%;
   border: none;
   outline: none;
 }
 
-.protectorCommunity-postscriptDetails-commentsInput > form > button{
+.protectorCommunity-postscriptDetails-commentsInput > button{
   padding: 10px 45px;
   border-radius: 6px;
   border: none;

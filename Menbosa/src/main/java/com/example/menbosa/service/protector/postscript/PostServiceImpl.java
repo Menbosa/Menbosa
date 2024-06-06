@@ -25,7 +25,7 @@ public class PostServiceImpl implements PostService  {
 
     private final PostScriptMapper postScriptMapper;
     private final ImgFileMapper imgFileMapper;
-    private final FileMapper fileMapper;
+
 
     @Value("C:/upload/")
     private String fileDir;
@@ -54,9 +54,9 @@ public class PostServiceImpl implements PostService  {
     @Override
     public ImgFileDTO saveImgFile(MultipartFile imgFile) throws IOException {
         String originalImgFilename = imgFile.getOriginalFilename();
-        UUID imgFileServer = UUID.randomUUID();
+        UUID uuid = UUID.randomUUID();
 
-        String systemName = imgFileServer.toString() + "_" + originalImgFilename;
+        String systemName = uuid.toString() + "_" + originalImgFilename;
 
         File uploadPath = new File(fileDir, getUploadPath());
 
@@ -69,7 +69,7 @@ public class PostServiceImpl implements PostService  {
         imgFile.transferTo(uploadFile);
 
         ImgFileDTO imgFileDTO = new ImgFileDTO();
-        imgFileDTO.setImgFileServer(imgFileServer.toString());
+        imgFileDTO.setImgFileServer(uuid.toString());
         imgFileDTO.setImgFileUser(originalImgFilename);
         imgFileDTO.setImgFileExt(getUploadPath());
 
@@ -101,7 +101,7 @@ public class PostServiceImpl implements PostService  {
         postScriptMapper.updatePost(postUpdateDTO);
         Long boardRecomNum = postUpdateDTO.getBoardRecomNum();
 
-        fileMapper.deleteFile(boardRecomNum);
+        imgFileMapper.deleteImgFile(boardRecomNum);
 
         for(MultipartFile imgFile : files) {
             if(imgFile.isEmpty()) {

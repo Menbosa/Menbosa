@@ -12,7 +12,7 @@
 
 //댓글 작성하는 함수
 export function registerComment(commentInfo, callback){
-    fetch(`/v1/communicate/${commentInfo.boardRecomNum}/comment`,
+    fetch(`/v3/communicate/${commentInfo.boardRecomNum}/comment`,
         {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -28,7 +28,7 @@ export function registerComment(commentInfo, callback){
 
 //특정 게시물의 댓글 목록을 가져오는 함수
 export function getCommentList(boardRecomNum, callback){
-    fetch(`/v1/communicate/${boardRecomNum}/comments`, {
+    fetch(`/v3/communicate/${boardRecomNum}/comments`, {
         method : 'get'
     }).then(resp => resp.json())
         .then(dataList => { callback(dataList) });
@@ -37,7 +37,7 @@ export function getCommentList(boardRecomNum, callback){
 
 //페이지네이션을 지원하는 댓글목록을 가져오는 함수
 export function getCommentList2(boardRecomNum, page, callback){
-    fetch(`/v2/communicate/${boardRecomNum}/commentsPage?page=${page}`, {
+    fetch(`/v4/communicate/${boardRecomNum}/comments?page=${page}`, {
         method : 'get'
     }).then(resp => resp.json())
         .then(dataList => {
@@ -48,7 +48,7 @@ export function getCommentList2(boardRecomNum, page, callback){
 
 //댓글 삭제하는 함수
 export function remove(commentRecomNum, callback){
-    fetch(`/v1/comments/${commentRecomNum}`, {
+    fetch(`/v3/communicate/comments/${commentRecomNum}`, {
         method: 'DELETE'
     }).then(resp => {
         if(resp.status === 200){

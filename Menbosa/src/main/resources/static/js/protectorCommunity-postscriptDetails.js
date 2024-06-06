@@ -1,15 +1,10 @@
-import * as commuModule from "./module/recomComment.js";
-import {getCommentList2, registerComment} from "./module/recomComment.js";
+import * as postModule from "./module/recomComment.js";
 let page = 1;
 let hasNext = true;
 
 
 const titleTabMenu = document.querySelector(".menuButton");
 const titleSubTabMenu = document.querySelector(".menuButton-modifyDelete");
-const commentMenu = document.querySelectorAll(".comments-menuButton");
-const commentSubMenu = document.querySelectorAll(".comments-list-submenu");
-const replyButton = document.querySelectorAll(".reply");
-const replyInputBox = document.querySelectorAll(".reply-inputBox");
 
 
 titleTabMenu.addEventListener("click", function() {
@@ -17,34 +12,40 @@ titleTabMenu.addEventListener("click", function() {
 })
 
 
-for(let i = 0; i < commentMenu.length; i ++)  {
-  commentMenu[i].addEventListener("click", function() {
-    commentSubMenu[i].classList.toggle("active");
-  })
-}
 
-
-
-replyButton.forEach((e,i) => {
-  e.addEventListener("click", () => {
-    replyInputBox[i].classList.toggle("reply-active");
-
-    replyButton.forEach((e,j) => {
-      if(j !== i) {
-        replyInputBox[j].classList.remove("reply-active");
-      }
-    })
-  })
-})
-
-
-// const detailDelete = document.querySelector(".menuButton-modifyDelete > li:nth-of-type(2)");
-// detailDelete.addEventListener("click", function(){
-//   confirm("삭제하시겠습니까?")
-// })
 
 
 let boardRecomNum = document.querySelector('#boardRecomNum').value;
+
+imgAjax();
+
+
+function imgAjax(){
+  fetch(`/v1/posts/${boardRecomNum}/files`, {method: 'GET'})
+      //서버에 GET요청을 보내 파일 목록을 가져옴
+      .then(res => res.json())//응답을 JSON으로 변환
+      .then(list => { //변환된 데이터를 list 변수에 저장
+        console.log(list)
+
+        let tags = ''; //HTML 태그를 저장할 변수 초기화
+
+        for (let i = 0; i < list.length; i++) {
+          let imgFileName = list[i].imgFileExt + '/' + list[i].imgFileServer + '_' + list[i].imgFileUser;
+          //파일 경로 조합
+
+          console.log(imgFileName);
+
+          tags += `<img src="/v1/imgFiles?imgFileName=${imgFileName}" data-id="${list[i].imgFileNum}" data-name="${imgFileName}"/>`;
+        }
+
+        let $postImgs = document.querySelector('.post-images'); //이미지가 삽입될 요소
+
+        $postImgs.innerHTML = tags; //생성된 html 태그를 삽입
+      });
+
+}
+
+
 // ========================================================================
 
 {
@@ -69,10 +70,10 @@ let boardRecomNum = document.querySelector('#boardRecomNum').value;
     console.log("content:" + commentInfo.content );
     console.log(commentInfo.boardRecomNum);
 
-    commuModule.registerComment(commentInfo, ()=> {
+    postModule.registerComment(commentInfo, ()=> {
       document.querySelector('#recomComment-content').value = '';
       page = 1;
-      commuModule.getCommentList2(boardRecomNum, page, function (data) {
+      postModule.getCommentList2(boardRecomNum, page, function (data) {
         hasNext = data.hasNext;
         console.log("hasNext:"+ hasNext);
         console.log(data.contentList);
@@ -86,7 +87,7 @@ let boardRecomNum = document.querySelector('#boardRecomNum').value;
 
 
 
-  commuModule.getCommentList2(boardRecomNum, page, function (data) {
+  postModule.getCommentList2(boardRecomNum, page, function (data) {
     // data.contentList = undefined;
     hasNext = data.hasNext;
     console.log("hasNext222:"+ hasNext);
@@ -107,7 +108,7 @@ let boardRecomNum = document.querySelector('#boardRecomNum').value;
 
       page++; //페이지 번호 증가
 
-      commuModule.getCommentList2(boardRecomNum, page, function (data){ //다음 페이지의 댓글 목록을 가져옴
+      postModule.getCommentList2(boardRecomNum, page, function (data){ //다음 페이지의 댓글 목록을 가져옴
         hasNext = data.hasNext;
         console.log("hasNext33:"+ hasNext);
 
@@ -140,7 +141,7 @@ function displayComment(commentList){
                   </div>
                   <p class="comments-list-contents">
                     <span>${e.commentRecomContents}</span>
-                    <span>${commuModule.timeForToday(e.commentRecomDate)}</span>
+                    <span>${postModule.timeForToday(e.commentRecomDate)}</span>
                   </p>
                 </div>
               </div>
@@ -172,7 +173,7 @@ function appendComment(commentList) {
                   </div>
                   <p class="comments-list-contents">
                     <span>${e.commentRecomContents}</span>
-                    <span>${commuModule.timeForToday(e.commentRecomDate)}</span>
+                    <span>${postModule.timeForToday(e.commentRecomDate)}</span>
                   </p>
                 </div>
               </div>
@@ -195,10 +196,10 @@ $commentWrap.addEventListener('click', function (e) {
 
 
     if(confirm("삭제하시겠습니까?")){
-      commuModule.remove(commentRecomNum, () => {
+      postModule.remove(commentRecomNum, () => {
         // 댓글 삭제 함수 호출
         page = 1; // 페이지를 초기화
-        commuModule.getCommentList2(boardRecomNum, page, function (data) {
+        postModule.getCommentList2(boardRecomNum, page, function (data) {
           // 댓글 목록을 다시 가져옴
           hasNext = data.hasNext;
           // 다음 페이지 여부를 갱신

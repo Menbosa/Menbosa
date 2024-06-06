@@ -22,7 +22,7 @@ public class SurveyController {
 
     @GetMapping
     public String survey(@SessionAttribute(value="proMemNum", required = false) Long proMemNum) {
-        return proMemNum == null ? "/basic/division" : "/basic/division-member";
+        return proMemNum == null ? "/protector/protectorLogin" : "/basic/division-member";
     }
 
     @GetMapping("/test")
