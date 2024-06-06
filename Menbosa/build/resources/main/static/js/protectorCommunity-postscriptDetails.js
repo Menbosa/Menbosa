@@ -12,34 +12,40 @@ titleTabMenu.addEventListener("click", function() {
 })
 
 
-for(let i = 0; i < commentMenu.length; i ++)  {
-  commentMenu[i].addEventListener("click", function() {
-    commentSubMenu[i].classList.toggle("active");
-  })
-}
 
-
-
-replyButton.forEach((e,i) => {
-  e.addEventListener("click", () => {
-    replyInputBox[i].classList.toggle("reply-active");
-
-    replyButton.forEach((e,j) => {
-      if(j !== i) {
-        replyInputBox[j].classList.remove("reply-active");
-      }
-    })
-  })
-})
-
-
-// const detailDelete = document.querySelector(".menuButton-modifyDelete > li:nth-of-type(2)");
-// detailDelete.addEventListener("click", function(){
-//   confirm("삭제하시겠습니까?")
-// })
 
 
 let boardRecomNum = document.querySelector('#boardRecomNum').value;
+
+imgAjax();
+
+
+function imgAjax(){
+  fetch(`/v1/posts/${boardRecomNum}/files`, {method: 'GET'})
+      //서버에 GET요청을 보내 파일 목록을 가져옴
+      .then(res => res.json())//응답을 JSON으로 변환
+      .then(list => { //변환된 데이터를 list 변수에 저장
+        console.log(list)
+
+        let tags = ''; //HTML 태그를 저장할 변수 초기화
+
+        for (let i = 0; i < list.length; i++) {
+          let imgFileName = list[i].imgFileExt + '/' + list[i].imgFileServer + '_' + list[i].imgFileUser;
+          //파일 경로 조합
+
+          console.log(imgFileName);
+
+          tags += `<img src="/v1/imgFiles?imgFileName=${imgFileName}" data-id="${list[i].imgFileNum}" data-name="${imgFileName}"/>`;
+        }
+
+        let $postImgs = document.querySelector('.post-images'); //이미지가 삽입될 요소
+
+        $postImgs.innerHTML = tags; //생성된 html 태그를 삽입
+      });
+
+}
+
+
 // ========================================================================
 
 {

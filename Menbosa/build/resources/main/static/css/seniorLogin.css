@@ -90,7 +90,6 @@
   margin: 0 auto;
   margin-bottom: 30px;
   padding-left: 10px;
-
 }
 
 #seniorPhonenumber{
@@ -121,6 +120,7 @@
   height: 50px;
   margin-top: 30px;
   display: flex;
+  justify-content: center;
 }
 
 .seniorPassword-find{
