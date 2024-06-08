@@ -108,6 +108,7 @@ main{
 .protectorCommunity-postscriptDetails-content > p{
   width: 100%;
   margin-bottom: 40px;
+  white-space: pre-wrap;
 }
 
 .protectorCommunity-postscriptDetails-content > p > img{

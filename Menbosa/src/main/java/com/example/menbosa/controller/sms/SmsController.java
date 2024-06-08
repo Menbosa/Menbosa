@@ -20,6 +20,7 @@ public class SmsController {
     final DefaultMessageService messageService;
     private final MypageService mypageService;
 
+
     public SmsController(MypageService mypageService) {
         this.mypageService = mypageService;
         // 반드시 계정 내 등록된 유효한 API 키, API Secret Key를 입력해주셔야 합니다!
@@ -36,7 +37,7 @@ public class SmsController {
         String msg = "";
 
         //pro 인지 sen 인지 구분하여 회원확인 + 컬럼 인증값 저장 쿼리 사용
-        //proMem = 1, senMem:jiyoon = 2
+        //proMem = 1, senMem = 2
         switch (division){
             case 1:
                 String proMemNum = ""+mypageService.selectProExi(name, phoneNum);

@@ -85,24 +85,12 @@
 
           <div class="protectorMain-noticebanner">
             <ul class="protectorMain-noticeCnt">
-              <li>
-                <a th:href="@{#}"></a>
-              </li>
-
-              <li>
-                <a th:href="@{#}"></a>
-              </li>
-
-              <li>
-                <a th:href="@{#}"></a>
-              </li>
-
-              <li>
-                <a th:href="@{#}"></a>
-              </li>
-
-              <li>
-                <a th:href="@{#}"></a>
+              <li th:each = "mainData : ${mainList}">
+                <a th:href="@{/alheum/community/mainDetails(announceNum=${mainData.announceNum})}">
+                  <span th:text = '${mainData.announceNum}'></span>
+                  <p th:text='${mainData.announceTitle}'></p>
+                  <span class="mainNotice-date" th:text = '${mainData.announceDate}'></span>
+                </a>
               </li>
             </ul>
           </div>
