@@ -131,11 +131,25 @@
 
 .protectorMain-noticeCnt li {
   border: 1px solid red;
-  width: 220px;
+  width: 295px;
   height: 250px;
-  margin-right: 155px;
+  margin-right: 40px;
   border-radius: 20px;
+  padding: 20px;
 }
+
+
+.mainNotice-date{
+  display: block;
+  margin-top: 115px;
+}
+
+.protectorMain-noticeCnt > li > a > p{
+  margin: 20px 0;
+  font-size: 20px;
+}
+
+
 
 .protectorMain-banner {
   margin-top: 50px;

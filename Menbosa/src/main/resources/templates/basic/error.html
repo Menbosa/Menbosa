@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서비스 준비 중</title>
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"/>
+    <style>
+        :root {
+            --font-color-default : #333;
+            --font-color-grey: #727272;
+            --font-color-white: #ffffff;
+            --color-main: #FE7A15;
+            --color-main-hover: #DF5427;
+            --color-disabled: #DCDCDC;
+            --color-sub-yell: #F8D90F;
+            --color-sub-yell-hover: #eba40c;
+            --color-sub-blue: #37BACC;
+            --color-sub-blue-hover: #0f9bad;
+            --color-sub-gree: #D3DD18;
+            --color-sub-gree-hover: #9dc001;
+            --color-gray: #8b8b8b;
+            --color-gray-hover: #686868;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-family: "Noto Sans KR", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 16px;
+            color: var(--font-color-default);
+            /* 텍스트긁기 방지 */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* -------------------개인common--------------------*/
+        :root{
+            --font-lightgrey:#a1a1a1;
+            --color-back-lightgrey: #f8f8f8;
+            --color-back-grey: #f4f4f4;
+            --color-table-grey: #d3d3d3;
+            --color-back-white:rgb(255, 255, 255);
+            --color-shadow: rgba(0,0,0,0.1);
+            --color-hover-shadow: rgba(254,122,21,0.5);
+        }
+
+        a{text-decoration-line: none;}
+        li{list-style: none;}
+
+
+        /* 알흠로고 middle */
+        .mypage-alheum-logo-mid{
+            display: inline-block;
+            /* justify-content: center; */
+            width: 200px;
+            height: 150px;
+            margin-top: 200px;
+        }
+
+        .mypage-alheum-logo-mid > img{
+            width: 100%;
+        }
+
+        /* 버튼 */
+        .mypage-button{
+            background-color: var(--color-main);
+            min-width: fit-content;
+            padding: 8px 45px;
+            color: var(--font-color-white);
+            /* font-size: 20px; */
+            border-radius: 30px;
+            cursor: pointer;
+            margin-bottom: 100px;
+        }
+
+        main{
+            /* background-color: #0f9bad; */
+            width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h1{
+            font-size: 24px;
+            font-weight: 500;
+            margin: 14px 0;
+        }
+
+        p{
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+<!-- 헤더 -->
+<main>
+    <div class="mypage-alheum-logo-mid">
+        <img th:src="@{/img/alheum_logo.svg}" alt="">
+    </div>
+    <h1>서비스 준비 중</h1>
+    <p>불편을 드려서 죄송합니다.</p>
+    <button class="mypage-button">돌아가기</button>
+</main>
+</body>
+<!-- 푸터 -->
+</html>
+<script>
+    let button = document.querySelector("button");
+
+    button.addEventListener('click',()=>{
+        console.log("이전페이지로");
+        history.go(-1);
+    });
+
+</script>

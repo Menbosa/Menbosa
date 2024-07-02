@@ -32,17 +32,23 @@
         FROM MBS_PRO_MEMBER
         WHERE PRO_MEM_PHONE_MID || PRO_MEM_PHONE_BACK = #{proMemPhone} AND PRO_MEM_PASSWORD = #{proMemPassword}
     </select>
-    
+
     <select id="selectUserInfo" resultType="UserSessionDTO">
         SELECT PRO_MEM_PHONE_MID || PRO_MEM_PHONE_BACK, PRO_MEM_NUM, PRO_MEM_NAME
         FROM MBS_PRO_MEMBER
-        WHERE PRO_MEM_PHONE_MID || PRO_MEM_PHONE_BACK = #{proMemPhone} AND PRO_MEM_PASSWORD = #{proMemPassword}
+        WHERE '010' || TO_CHAR(PRO_MEM_PHONE_MID) || TO_CHAR(PRO_MEM_PHONE_BACK) = #{proMemPhone} AND PRO_MEM_PASSWORD = #{proMemPassword}
     </select>
 
-<!--    <select id="selectUserEmail" resultType="UserSessionDTO">-->
-<!--        SELECT PRO_MEM_EMAIL-->
-<!--        FROM MBS_PRO_MEMBER-->
-<!--        WHERE PRO_MEM_EMAIL = #{proMemEmail}-->
-<!--    </select>-->
+    <!--        <select id="selectSenLogin" resultType="SenUserSessionDTO">
+            SELECT SEN_MEM_PHONE_MID || SEN_MEM_PHONE_BACK, SEN_MEM_NUM, SEN_MEM_NAME
+            FROM MBS_SEN_MEMBER
+            WHERE '010' || TO_CHAR(SEN_MEM_PHONE_MID) || TO_CHAR(SEN_MEM_PHONE_BACK) = #{senMemPhone} AND SEN_MEM_PASSWORD = #{senMemPassword}
+        </select>-->
+
+    <!--    <select id="selectUserEmail" resultType="UserSessionDTO">-->
+    <!--        SELECT PRO_MEM_EMAIL-->
+    <!--        FROM MBS_PRO_MEMBER-->
+    <!--        WHERE PRO_MEM_EMAIL = #{proMemEmail}-->
+    <!--    </select>-->
 
 </mapper>

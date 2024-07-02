@@ -75,6 +75,7 @@
   border-radius: 5px;
   margin: 10px 0;
   outline-color: rgb(226, 226, 226);
+  padding: 10px;
 }
 
 .protectorLoginBtn button {
@@ -97,8 +98,7 @@
 .protectorLogin-subMenu {
   display: flex;
   margin-top: 10px;
-  position: relative;
-  left: 90px;
+  justify-content: center;
 }
 
 .protectorLogin-subMenu a {

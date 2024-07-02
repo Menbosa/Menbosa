@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
@@ -25,15 +26,16 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(String proMemPhone, String proMemPassword, HttpSession session) {
+    public String login(String proMemPhone, String proMemPassword, HttpSession session, RedirectAttributes redirectAttributes) {
         try {
             UserSessionDTO sessionDTO = userService.loginUser(proMemPhone, proMemPassword);
             session.setAttribute("proMemNum", sessionDTO.getProMemNum());
             session.setAttribute("proMemPhone", sessionDTO.getProMemName());
+            return "redirect:/alheum";
         } catch (IllegalStateException e) {
+            redirectAttributes.addAttribute("loginFailed", true);
             return "redirect:/alheum/user/login";
         }
-        return "redirect:/alheum";
     }
 
     @GetMapping("/join")

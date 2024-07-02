@@ -27,9 +27,8 @@ public class ImgFileApi {
     }
 
     @GetMapping("/v1/imgFiles")
-    public byte[] display(String fileName) throws IOException {
-        File file = new File(fileDir, fileName);
-
+    public byte[] displayImg(String imgFileName) throws IOException {
+        File file = new File(fileDir, imgFileName);
         return FileCopyUtils.copyToByteArray(file);
     }
 }

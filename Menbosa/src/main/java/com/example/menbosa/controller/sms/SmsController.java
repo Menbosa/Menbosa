@@ -20,10 +20,11 @@ public class SmsController {
     final DefaultMessageService messageService;
     private final MypageService mypageService;
 
+
     public SmsController(MypageService mypageService) {
         this.mypageService = mypageService;
         // 반드시 계정 내 등록된 유효한 API 키, API Secret Key를 입력해주셔야 합니다!
-        this.messageService = NurigoApp.INSTANCE.initialize("NCSPOHDCMRBTVPM6", "E8CC6OBRIR12YC1NVQGMHPQWBUC5PRT5", "https://api.coolsms.co.kr");
+        this.messageService = NurigoApp.INSTANCE.initialize("NCSGY9IN3N5HP1QH", "Z9AX8RAHJXHZPQNCVXZFFCURP9U4YZZI", "https://api.coolsms.co.kr");
     }
 
     @PostMapping("/send-one")
@@ -36,7 +37,7 @@ public class SmsController {
         String msg = "";
 
         //pro 인지 sen 인지 구분하여 회원확인 + 컬럼 인증값 저장 쿼리 사용
-        //proMem = 1, senMem:jiyoon = 2
+        //proMem = 1, senMem = 2
         switch (division){
             case 1:
                 String proMemNum = ""+mypageService.selectProExi(name, phoneNum);
@@ -52,7 +53,7 @@ public class SmsController {
 
         //메세지 전송 값 입력 후 전송
         Message message = new Message();
-        message.setFrom("01026573508");
+        message.setFrom("01040475420");
         message.setTo(phoneNum);
 //        message.setText("한글 45자, 영자 90자 이하 입력되면 자동으로 SMS타입의 메시지가 추가됩니다.");
         message.setText(msg);

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-<!--  <script defer th:src="@{/js/seniorMypage.js}"></script>-->
+  <script defer th:src="@{/js/seniorMypage.js}"></script>
   <!-- footer CSS -->
   <link rel="stylesheet" th:href="@{/css/footer.css}">
 </head>
@@ -17,7 +17,9 @@
     <img th:src="@{/img/seniorBackgroundImg.png}" alt="" class="seniorBackgroundImg">
     <div class="seniorMypage-container">
       <div class="seniorMypage-top">
-        <img th:src="@{/img/senior-alheum_logo.svg}" alt="" class="seniorMypage-logo">
+        <a th:href="@{/alheum}">
+          <img th:src="@{/img/senior-alheum_logo.svg}" alt="" class="seniorMypage-logo">
+        </a>
         <div>내 정보</div>
       </div>
       <form action="/alheum/senUser/update" method="post">

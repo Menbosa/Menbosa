@@ -38,7 +38,7 @@ $certiMessage.on("click", function () {
             success: function(response) {
                 // 성공 응답 처리
                 console.log('메시지 전송 성공:', response);
-                alert("인증번호를 확인 후 입력해주세요.");
+                alert("메시지가 발송되었습니다.");
             },
             error: function(xhr, status, error) {
                 // 오류 응답 처리
