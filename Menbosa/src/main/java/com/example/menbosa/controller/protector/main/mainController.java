@@ -52,5 +52,8 @@ public class mainController {
         return "/protector/protectorRecommend-welfare";
     }
 
-
+    @GetMapping("/error")
+    public String erro() {
+        return "/basic/error";
+    }
 }

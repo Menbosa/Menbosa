@@ -14,7 +14,6 @@ import java.util.Optional;
 @Transactional
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-    @Autowired
     private final UserMapper userMapper;
 
     @Override

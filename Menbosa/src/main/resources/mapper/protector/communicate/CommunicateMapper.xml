@@ -77,10 +77,6 @@
         WHERE ANNOUNCE_NUM = #{announceNum}
     </select>
 
-
-
-
-
     <select id="selectAllPage" parameterType="Criteria" resultType="CommuListDto">
         <![CDATA[
         SELECT BOARD_COMMU_NUM, BOARD_COMMU_TITLE, BOARD_COMMU_DATE ,PRO_MEM_NAME
